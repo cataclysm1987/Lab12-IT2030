@@ -1,0 +1,82 @@
+<html>
+<head>
+   
+</head>
+<body>
+<h2>Lab 12 - Eric Conklin</h2>
+<div id="mydiv">
+
+</div>
+<div>
+  <label>
+Number 1:
+<input type="text"  id="number1" name="number1" />
+</label>
+<label>
+Number 2:
+<input type="text" id="number2" name="number2" />
+</label>
+<button onClick="displaygcd()">Get GCD</button>
+<br/>
+<p id="output"></p>
+</div>
+
+<div>
+  <label>
+Get Prime Numbers For
+<input type="text"  id="prime" name="prime" />
+</label>
+<button onClick="display()">Display All Prime Numbers</button>
+<br/>
+<p id="output2"></p>
+</div>
+  <script>
+    function displaygcd(){
+       document.getElementById("output").innerHTML = gcd();
+    }
+      function gcd() {
+          try {
+            var first = parseInt(document.getElementById("number1").value);
+            var second = parseInt(document.getElementById("number2").value);
+            first = Math.abs(first);
+            second = Math.abs(second);
+            if (second > first) {var temp = first; first = second; second = temp;}
+            while (true) {
+                if (second == 0) return first;
+                first %= second;
+                if (first == 0) return second;
+                second %= first;
+            }
+          } catch(ex){
+              alert("Invalid values entered! Please try again.");
+          }    
+    }
+
+    function isPrime(num) {
+    for ( var i = 2; i < num; i++ ) {
+        if ( num % i === 0 ) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function display() {
+  if (isNaN(document.getElementById("prime").value)){
+    alert("Invalid number entered");
+  } else {
+    var arr = [2];
+    var n = parseInt(document.getElementById("prime").value);
+    for ( var i = 3; i < n; i+=2 ) {
+        if ( isPrime(i) ) {
+            arr.push(i);
+        }
+    }
+    document.getElementById("output2").innerHTML = arr;
+  }
+    
+}
+
+
+  </script>
+</body></html>
